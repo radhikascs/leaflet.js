@@ -10,6 +10,7 @@
     <![endif]-->
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.1.15/leaflet-providers.js"></script>
     <script src="leaflet/leaflet.js"></script>
     <style>
       html, body, #mapid {
@@ -22,10 +23,13 @@
   <body>
     <div id="mapid"></div>
     <script type="text/javascript">
-      var mymap = L.map('mapid').setView([51.73, -1.28],5);
-       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(mymap);
-       var pubLatLng = L.latLng(51.757230,-1.260269); 
-       var pubMarker = L.marker(pubLatLng).addTo(mymap);
+        
+      var mymap = L.map('mapid').setView([51.73, -1.28],9);
+    //  L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png').addTo(mymap);
+      // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(mymap);
+       L.tileLayer('https://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png').addTo(mymap);
+       mymap.on("click", function() { alert("Focus is on london"); })
+   
     </script>
   </body>
 </html>

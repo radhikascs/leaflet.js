@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>Overlay Map</title>
+    <meta charset="utf-8" />
+    <link 
+        rel="stylesheet" 
+        href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+</head>
+<body>
+    <div id="map" style="width: 1000px; height: 700px"></div>
+
+    <script
+        src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+    </script>
+
+    <script>
+        var coolPlaces = new L.LayerGroup();
+        L.marker([40.712784, -74.005941])
+            .bindPopup('New York').addTo(coolPlaces),
+        L.marker([42.360082, -71.058880])
+            .bindPopup('Boston').addTo(coolPlaces),
+        L.marker([35.428323, -78.77746])
+            .bindPopup('Atlanta').addTo(coolPlaces),
+        L.marker([25.761680, -80.191790])
+            .bindPopup('Miami').addTo(coolPlaces),
+         L.marker([29.760427, -95.369803])
+            .bindPopup('Houston').addTo(coolPlaces),
+        L.polyline([
+            [40.712784, -74.005941],
+            [42.360082, -71.058880],
+            [35.428323, -78.77746],
+            [25.761680, -80.191790],
+            [29.760427, -95.369803],
+            [40.712784, -74.005941]
+            ]
+            ).addTo(coolPlaces);
+        var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+            thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
+        
+        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            osmAttrib = '&copy; ' + osmLink + ' Contributors',
+            landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+            thunAttrib = '&copy; '+osmLink+' Contributors & '+thunLink;
+        var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}),
+            landMap = L.tileLayer(landUrl, {attribution: thunAttrib});
+        var map = L.map('map', {
+			    layers: [osmMap] // only add one!
+		    })
+		    .setView([35.9908385, -78.9005222], 5);
+		var baseLayers = {
+			"General View": osmMap,
+			"Landscape View": landMap
+		};
+		var overlays = {
+			"Places visited": coolPlaces
+		};
+		L.control.layers(baseLayers,overlays).addTo(map);
+    </script>
+</body>
+</html>
