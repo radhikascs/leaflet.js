@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="leaflet/leaflet.css" />
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" type="text/css" href=" leaflet/
+      leaflet.ie.css" />
+    <![endif]-->
+    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+    <script src="leaflet/leaflet.js"></script>
+    <style>
+      html, body, #mapid {
+      width: 600px; 
+      height: 400px
+      }
+    </style>
+    <title>Leaflet</title>
+  </head>
+  <body>
+    <div id="mapid"></div>
+    <script type="text/javascript">
+        
+      var mymap = L.map('mapid').setView([51.73, -1.28],8);
+      L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png').addTo(mymap);
+      //  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(mymap);
+    </script>
+  </body>
+</html>
